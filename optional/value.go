@@ -10,6 +10,17 @@ type Value[T any] struct {
 	value *T
 }
 
+func Some[T any](value T) Value[T] {
+	return Value[T]{
+		value: &value,
+	}
+}
+func ZeroValue[T any]() Value[T] {
+	return Value[T]{
+		value: new(T),
+	}
+}
+
 // Get may panic if Value is Nil
 func (v Value[T]) Get() T {
 	return *v.value
