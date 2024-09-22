@@ -56,6 +56,14 @@ func (v Value[T]) LooupRef() (*T, bool) {
 	return nil, false
 }
 
+func (v Value[T]) GetValueOr(or T) T {
+	if !v.HasValue() {
+		return or
+	}
+
+	return v.Get()
+}
+
 func (v *Value[T]) Set(value T) {
 	if v.value == nil {
 		v.value = &value
