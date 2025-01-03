@@ -5,12 +5,16 @@ import (
 	"fmt"
 )
 
+type Value[T any] struct {
+	value *T
+}
+
 func Nil[T any]() Value[T] {
 	return Value[T]{}
 }
 
-type Value[T any] struct {
-	value *T
+func Missing[T any]() Value[T] {
+	return Value[T]{}
 }
 
 func Some[T any](value T) Value[T] {
