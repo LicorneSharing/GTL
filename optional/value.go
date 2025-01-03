@@ -1,6 +1,9 @@
 package optional
 
-import "encoding/json"
+import (
+	"encoding/json"
+	"fmt"
+)
 
 func Nil[T any]() Value[T] {
 	return Value[T]{}
@@ -62,6 +65,14 @@ func (v Value[T]) GetValueOr(or T) T {
 	}
 
 	return v.Get()
+}
+
+func (v Value[T]) String() string {
+	if v.value == nil {
+		return "nil"
+	}
+
+	return fmt.Sprint(*v.value)
 }
 
 func (v *Value[T]) Set(value T) {
